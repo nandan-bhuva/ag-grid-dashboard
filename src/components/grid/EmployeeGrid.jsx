@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import {
   ModuleRegistry,
@@ -14,7 +14,7 @@ const EmployeeGrid = ({ rowData }) => {
 
   // Theme State
   const [theme, setTheme] = useState("quartz");
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const themeMap = {
     quartz: themeQuartz,
     balham: themeBalham,
@@ -91,6 +91,37 @@ const EmployeeGrid = ({ rowData }) => {
     resizable: true
   };
 
+  const sideBarConfig = {
+    toolPanels: [
+      {
+        id: "columns",
+        labelDefault: "Columns",
+        iconKey: "columns",
+        toolPanel: "agColumnsToolPanel",
+        toolPanelParams: {
+          suppressPivotMode: true
+        }
+      },
+      {
+        id: "filters",
+        labelDefault: "Filters",
+        iconKey: "filter",
+        toolPanel: "agFiltersToolPanel"
+      }
+    ],
+    defaultToolPanel: "columns"
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div style={{ width: "100%" }}>
 
@@ -123,38 +154,11 @@ const EmployeeGrid = ({ rowData }) => {
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           pagination={true}
-          paginationPageSize={5}
+          paginationPageSize={10}
           paginationPageSizeSelector={[5, 10, 20]}
           domLayout="autoHeight"
           // sideBar={true}
-          sideBar={{
-            toolPanels: [
-              {
-                id: 'columns',
-                labelDefault: 'Columns',
-                iconKey: 'columns',
-                toolPanel: 'agColumnsToolPanel',
-                toolPanelParams: {
-                  suppressPivotMode: true,
-                  suppressRowGroups: false,
-                  suppressValues: false
-                }
-              },
-              {
-                id: 'filters',
-                labelDefault: 'Filters',
-                iconKey: 'filter',
-                toolPanel: 'agFiltersToolPanel',
-                toolPanelParams: {
-                  suppressPivotMode: true,
-                  suppressRowGroups: false,
-                  suppressValues: false,
-                }
-              },
-            ],
-
-            defaultToolPanel: 'columns'
-          }}
+          sideBar={isMobile ? false : sideBarConfig}
         />
       </div>
 
