@@ -69,7 +69,7 @@ src/
 
 ```bash
 # Clone repo
-git clone https://github.com/your-username/ag-grid-dashboard.git
+git clone https://github.com/nandan-bhuva/ag-grid-dashboard.git
 
 # Go to folder
 cd ag-grid-dashboard
