@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #333;
+}
+
+/* App Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ================= HEADER ================= */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* Logo */
+.logo {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Navigation */
+.nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  padding-bottom: 4px;
+  transition: all 0.2s ease;
+}
+
+.nav a:hover {
+  color: #4a90e2;
+}
+
+.nav a.active {
+  color: #4a90e2;
+  border-bottom: 2px solid #4a90e2;
+}
+
+/* Header Actions */
+.header-actions .btn {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.header-actions .btn:hover {
+  background: #357abd;
+}
+
+/* ================= CONTENT ================= */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  border-top: 1px solid #eaeaea;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #0a66c2;
+}
+
+.footer-link svg {
+  transition: transform 0.2s ease;
+}
+
+.footer-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* ================= STATUS BADGES ================= */
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.active {
+  background: #e6f7ee;
+  color: #2e7d32;
+}
+
+.status.inactive {
+  background: #fdecea;
+  color: #c62828;
+}
